@@ -774,7 +774,11 @@
             
             // Initialize EmailJS only if configured
             if (isEmailJSConfigured()) {
-                emailjs.init(EMAILJS_CONFIG.publicKey);
+                try {
+                    emailjs.init(EMAILJS_CONFIG.publicKey);
+                } catch (error) {
+                    console.log('EmailJS initialization failed:', error);
+                }
             }
             
             form.addEventListener('submit', function(e) {
@@ -830,7 +834,7 @@
                     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
                     submitButton.disabled = true;
                     
-                    if (isEmailJSConfigured()) {
+                    if (isEmailJSConfigured() && typeof emailjs !== 'undefined') {
                         // Prepare template parameters
                         const templateParams = {
                             from_name: name.value.trim(),
