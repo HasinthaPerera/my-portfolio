@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         /* Custom styles for a clean, professional look */
         * {
@@ -749,12 +751,22 @@
             });
         });
 
-        // Contact Form Validation and Handling
+        // EmailJS Configuration - REPLACE WITH YOUR ACTUAL VALUES
+        const EMAILJS_CONFIG = {
+            serviceID: 'YOUR_SERVICE_ID',      // Replace with your EmailJS service ID
+            templateID: 'YOUR_TEMPLATE_ID',    // Replace with your EmailJS template ID
+            publicKey: 'YOUR_PUBLIC_KEY'       // Replace with your EmailJS public key
+        };
+
+        // Contact Form Validation and Handling with EmailJS
         function initContactForm() {
             const form = document.getElementById('contact-form');
             const formMessage = document.getElementById('form-message');
             
             if (!form) return;
+            
+            // Initialize EmailJS
+            emailjs.init(EMAILJS_CONFIG.publicKey);
             
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -802,7 +814,7 @@
                 }
                 
                 if (isValid) {
-                    // Simulate form submission
+                    // Send email using EmailJS
                     const submitButton = form.querySelector('button[type="submit"]');
                     const originalText = submitButton.innerHTML;
                     
@@ -810,31 +822,58 @@
                     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
                     submitButton.disabled = true;
                     
-                    // Simulate API call delay
-                    setTimeout(() => {
-                        // Reset form
-                        form.reset();
-                        
-                        // Show success message
-                        formMessage.classList.remove('hidden');
-                        formMessage.innerHTML = '<p class="text-teal-400 font-semibold">✨ Thank you! Your message has been received. I\'ll get back to you soon!</p>';
-                        
-                        // Reset button
-                        submitButton.innerHTML = originalText;
-                        submitButton.disabled = false;
-                        
-                        // Hide success message after 5 seconds
-                        setTimeout(() => {
-                            formMessage.classList.add('hidden');
-                        }, 5000);
-                        
-                        // Add success animation to form
-                        form.style.transform = 'scale(1.02)';
-                        setTimeout(() => {
-                            form.style.transform = 'scale(1)';
-                        }, 200);
-                        
-                    }, 2000);
+                    // Prepare template parameters
+                    const templateParams = {
+                        from_name: name.value.trim(),
+                        from_email: email.value.trim(),
+                        subject: subject.value.trim(),
+                        message: message.value.trim(),
+                        to_name: 'Hasintha Heshan' // Your name
+                    };
+                    
+                    // Send email via EmailJS
+                    emailjs.send(EMAILJS_CONFIG.serviceID, EMAILJS_CONFIG.templateID, templateParams)
+                        .then(function(response) {
+                            console.log('SUCCESS!', response.status, response.text);
+                            
+                            // Reset form
+                            form.reset();
+                            
+                            // Show success message
+                            formMessage.classList.remove('hidden');
+                            formMessage.innerHTML = '<p class="text-teal-400 font-semibold">✨ Thank you! Your message has been sent successfully. I\'ll get back to you soon!</p>';
+                            
+                            // Reset button
+                            submitButton.innerHTML = originalText;
+                            submitButton.disabled = false;
+                            
+                            // Hide success message after 5 seconds
+                            setTimeout(() => {
+                                formMessage.classList.add('hidden');
+                            }, 5000);
+                            
+                            // Add success animation to form
+                            form.style.transform = 'scale(1.02)';
+                            setTimeout(() => {
+                                form.style.transform = 'scale(1)';
+                            }, 200);
+                            
+                        }, function(error) {
+                            console.log('FAILED...', error);
+                            
+                            // Show error message
+                            formMessage.classList.remove('hidden');
+                            formMessage.innerHTML = '<p class="text-red-400 font-semibold">❌ Sorry, there was an error sending your message. Please try again or contact me directly.</p>';
+                            
+                            // Reset button
+                            submitButton.innerHTML = originalText;
+                            submitButton.disabled = false;
+                            
+                            // Hide error message after 8 seconds
+                            setTimeout(() => {
+                                formMessage.classList.add('hidden');
+                            }, 8000);
+                        });
                 }
             });
             
