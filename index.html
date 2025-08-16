@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasintha Heshan | Portfolio</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom styles for a clean, professional look */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c; /* Dark gray background */
+            color: #e2e8f0; /* Light gray text */
+        }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .card {
+            background-color: #2d3748;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .nav-link {
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: #14b8a6; /* Teal color for hover */
+        }
+        .btn {
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-sm shadow-md">
+        <nav class="container mx-auto flex justify-between items-center p-4">
+            <a href="#" class="text-2xl font-bold text-gray-100">Hasintha Heshan</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#about" class="text-gray-300 hover:text-teal-400 font-medium nav-link">About</a>
+                <a href="#skills" class="text-gray-300 hover:text-teal-400 font-medium nav-link">Skills</a>
+                <a href="#projects" class="text-gray-300 hover:text-teal-400 font-medium nav-link">Projects</a>
+                <a href="#contact" class="text-gray-300 hover:text-teal-400 font-medium nav-link">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="menu-button" class="md:hidden focus:outline-none text-gray-100">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 shadow-lg">
+            <a href="#about" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">About</a>
+            <a href="#skills" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Skills</a>
+            <a href="#projects" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Projects</a>
+            <a href="#contact" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-24">
+
+        <!-- Hero Section -->
+        <section id="hero" class="flex flex-col md:flex-row items-center justify-center min-h-screen -mt-24">
+            <div class="md:w-1/2 text-center md:text-left">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight">
+                    Hi, I'm <span class="text-teal-400">Hasintha Heshan</span>
+                </h1>
+                <p class="mt-4 text-lg md:text-xl text-gray-300">
+                    A passionate Information Systems student from Sabaragamuwa University, specializing in web development and data analysis.
+                </p>
+                <div class="mt-8 flex justify-center md:justify-start space-x-4">
+                    <a href="#projects" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105 btn">View My Work</a>
+                    <a href="#contact" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105 btn">Get in Touch</a>
+                </div>
+            </div>
+            <div class="mt-12 md:mt-0 md:w-1/2 flex justify-center">
+                <div class="relative w-64 h-64 md:w-80 md:h-80">
+                    <div class="absolute inset-0 bg-gradient-to-br from-teal-400 to-blue-500 rounded-full blur-2xl opacity-50"></div>
+                    <!-- Replace the placeholder image URL below with your actual profile photo URL -->
+                    <img src="Images/Profile.jpg" alt="Your Photo" class="relative w-full h-full object-cover rounded-full border-4 border-gray-800 shadow-lg">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-20">
+            <h2 class="section-title">About Me</h2>
+            <div class="max-w-3xl mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
+                <p class="text-gray-300 leading-relaxed">
+                    Hello! I'm a first-year Information Systems student at Sabaragamuwa University. My passion lies in creating efficient, user-friendly web applications and diving deep into data to uncover insights. I enjoy turning complex problems into simple, beautiful, and intuitive designs. When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or hiking in the beautiful landscapes of Sri Lanka.
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 bg-gray-950">
+            <h2 class="section-title">My Skills</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+                <div class="p-4 bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                    <i class="fas fa-code text-4xl text-teal-400 mb-2"></i>
+                    <h3 class="font-semibold text-lg text-white">Languages & Technologies</h3>
+                    <p class="text-gray-300">HTML, CSS, C Language, JavaScript, Java,Mysql</p>
+                </div>
+                <div class="p-4 bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                    <i class="fas fa-tools text-4xl text-teal-400 mb-2"></i>
+                    <h3 class="font-semibold text-lg text-white">Tools & Concepts</h3>
+                    <p class="text-gray-300">Git, GitHub, Web Design, Data Structures</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20">
+            <h2 class="section-title">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Project 1 -->
+                <div class="card overflow-hidden">
+                    <img src="Images/Project01.png" alt="Project 1 Screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white">Project 01</h3>
+                        <p class="text-gray-300 mb-4">This is an informational website that shows information about environment pollution in my area. It shows the environmental issues and solutions for them.This build using HTML,CSS and javascript.</p>
+                        <a href="https://github.com/HasinthaPerera/nature-node.git" class="text-teal-400 hover:underline">View on GitHub &rarr;</a>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="card overflow-hidden">
+                    <img src="https://placehold.co/600x400/60a5fa/ffffff?text=Project+2" alt="Project 2 Screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white">Weather App</h3>
+                        <p class="text-gray-300 mb-4">Comming Soon!</p>
+                        <a href="https://github.com/your-github-username/project-2" class="text-teal-400 hover:underline">View on GitHub &rarr;</a>
+                    </div>
+                </div>
+                
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-gray-800 text-white">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Let's Connect</h2>
+                <p class="text-lg text-gray-300 mb-8">I'm currently looking for new opportunities. My inbox is always open!</p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
+                    <a href="mailto:your.email@example.com" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full transition-colors text-lg flex items-center justify-center btn">
+                        <i class="fas fa-envelope mr-2"></i>Email Me
+                    </a>
+                    <a href="tel:+94771234567" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-full transition-colors text-lg flex items-center justify-center btn">
+                        <i class="fas fa-phone mr-2"></i>Call Me
+                    </a>
+                </div>
+                <div class="flex justify-center space-x-6 mt-8">
+                    <!-- Updated GitHub Link -->
+                    <a href="https://github.com/HasinthaPerera" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                    <!-- Updated LinkedIn Link -->
+                    <a href="https://www.linkedin.com/in/hasintha-heshan-42395037a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B1zdmMMIPQe6nfRp7I7STGQ%3D%3D" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-linkedin fa-2x"></i>
+                    </a>
+                   
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-950 text-center py-4">
+        <p class="text-gray-400 text-sm">&copy; <span id="footer-year"></span> Hasintha Heshan. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelectorAll('#mobile-menu a');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
