@@ -330,7 +330,7 @@
             <h2 class="section-title">About Me</h2>
             <div class="max-w-3xl mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
                 <p class="text-gray-300 leading-relaxed">
-                    Hello! I'm a first-year Information Systems student at Sabaragamuwa University. My passion lies in creating efficient, user-friendly web applications and diving deep into data to uncover insights. I enjoy turning complex problems into simple, beautiful, and intuitive designs. When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or hiking in the beautiful landscapes of Sri Lanka.
+                    Hello! I'm an Information Systems student at Sabaragamuwa University. My passion lies in creating efficient, user-friendly web applications and diving deep into data to uncover insights. I enjoy turning complex problems into simple, beautiful, and intuitive designs. When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or hiking in the beautiful landscapes of Sri Lanka.
                 </p>
             </div>
         </section>
@@ -451,7 +451,7 @@
                 <div class="card overflow-hidden">
                     <img src="Images/Project01.png" alt="Project 1 Screenshot" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white">Project 01</h3>
+                        <h3 class="text-xl font-bold mb-2 text-white">Project 01(NatureNode)</h3>
                         <p class="text-gray-300 mb-4">This is an informational website that shows information about environment pollution in my area. It shows the environmental issues and solutions for them.This build using HTML,CSS and javascript.</p>
                         <a href="https://github.com/HasinthaPerera/nature-node.git" class="text-teal-400 hover:underline">View on GitHub &rarr;</a>
                     </div>
@@ -752,11 +752,13 @@
         });
 
         // EmailJS Configuration - REPLACE WITH YOUR ACTUAL VALUES
+        // ===== IMPORTANT: REPLACE THESE VALUES FROM YOUR EMAILJS DASHBOARD =====
         const EMAILJS_CONFIG = {
-            serviceID: 'YOUR_SERVICE_ID',      // Replace with your EmailJS service ID
-            templateID: 'YOUR_TEMPLATE_ID',    // Replace with your EmailJS template ID
+            serviceID: 'YOUR_SERVICE_ID',      // Replace with your EmailJS service ID (e.g., service_abc123)
+            templateID: 'YOUR_TEMPLATE_ID',    // Replace with your EmailJS template ID (e.g., template_xyz789)
             publicKey: 'YOUR_PUBLIC_KEY'       // Replace with your EmailJS public key
         };
+        // ===== END OF EMAILJS CONFIGURATION =====
 
         // Check if EmailJS is properly configured
         const isEmailJSConfigured = () => {
