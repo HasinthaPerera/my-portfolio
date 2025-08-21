@@ -548,7 +548,7 @@ Live Demo &rarr;
                             </div>
                             <div>
                                 <label for="subject" class="block text-sm font-semibold mb-2">Subject *</label>
-                                <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:border-teal-400 focus:outline-none transition-colors text-white">
+                                <input type="text" id="subject" name="title" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:border-teal-400 focus:outline-none transition-colors text-white">
                                 <span class="error-message text-red-400 text-sm hidden">Please enter a subject</span>
                             </div>
                             <div>
@@ -756,12 +756,12 @@ Live Demo &rarr;
             });
         });
 
-        // EmailJS Configuration - REPLACE WITH YOUR ACTUAL VALUES
-        // ===== IMPORTANT: REPLACE THESE VALUES FROM YOUR EMAILJS DASHBOARD =====
+        // EmailJS Configuration - Configured with your values
+        // ===== These values are from your EmailJS dashboard =====
         const EMAILJS_CONFIG = {
-            serviceID: 'YOUR_SERVICE_ID',      // Replace with your EmailJS service ID (e.g., service_abc123)
-            templateID: 'YOUR_TEMPLATE_ID',    // Replace with your EmailJS template ID (e.g., template_xyz789)
-            publicKey: 'YOUR_PUBLIC_KEY'       // Replace with your EmailJS public key
+            serviceID: 'service_c14ex88',
+            templateID: 'template_4ilwcir',
+            publicKey: 'tJyzNke0fsVsl0czT'
         };
         // ===== END OF EMAILJS CONFIGURATION =====
 
@@ -782,7 +782,7 @@ Live Demo &rarr;
             // Initialize EmailJS only if configured
             if (isEmailJSConfigured()) {
                 try {
-                    emailjs.init(EMAILJS_CONFIG.publicKey);
+                    emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
                 } catch (error) {
                     console.log('EmailJS initialization failed:', error);
                 }
@@ -842,17 +842,9 @@ Live Demo &rarr;
                     submitButton.disabled = true;
                     
                     if (isEmailJSConfigured() && typeof emailjs !== 'undefined') {
-                        // Prepare template parameters
-                        const templateParams = {
-                            from_name: name.value.trim(),
-                            from_email: email.value.trim(),
-                            subject: subject.value.trim(),
-                            message: message.value.trim(),
-                            to_name: 'Hasintha Heshan' // Your name
-                        };
-                        
-                        // Send email via EmailJS
-                        emailjs.send(EMAILJS_CONFIG.serviceID, EMAILJS_CONFIG.templateID, templateParams)
+                        // Send email via EmailJS using the form fields (names must match template variables)
+                        // Note: form field names are set to from_name, from_email, subject, message
+                        emailjs.sendForm(EMAILJS_CONFIG.serviceID, EMAILJS_CONFIG.templateID, '#contact-form')
                             .then(function(response) {
                                 console.log('SUCCESS!', response.status, response.text);
                                 
@@ -1007,7 +999,7 @@ Live Demo &rarr;
             initScrollAnimations();
             initSmoothScroll();
             addLoadingAnimation();
-            initContactForm(); // Add this line
+            initContactForm();
         });
     </script>
 </body>
