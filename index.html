@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
-        /* Custom styles with CSS Variables for theming */
+       
         :root {
             /* Light Mode Colors */
-            --bg-color-light: #f3f4f6; /* Light gray */
-            --text-color-light: #1f2937; /* Dark gray */
+            --bg-color-light: #f3f4f6; 
+            --text-color-light: #1f2937; 
             --card-bg-light: #ffffff;
             --header-bg-light: rgba(255, 255, 255, 0.8);
-            --section-bg-light: #e5e7eb; /* Slightly darker gray for sections */
-            --primary-color: #14b8a6; /* Teal */
+            --section-bg-light: #e5e7eb; 
+            --primary-color: #14b8a6; 
             --primary-color-hover: #0d9488;
             --secondary-text-light: #4b5563;
 
@@ -209,7 +209,8 @@
             transition: width 0.3s ease;
         }
         .nav-link:hover { color: var(--primary-color); }
-        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link.active { color: var(--primary-color); }
         
         .btn {
             transition: all 0.3s ease; position: relative;
@@ -269,6 +270,57 @@
             color: var(--primary-color);
             transform: scale(1.1) rotate(15deg);
         }
+        
+        /* Screen-reader only class */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.25rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 1000;
+        }
+        #back-to-top:hover {
+            background-color: var(--primary-color-hover);
+            transform: scale(1.1);
+        }
+        #back-to-top.hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+
+       
+        .error-message {
+            display: none; 
+        }
+        input.invalid, textarea.invalid {
+            border-color: #f87171; 
+        }
+        body.light-mode input.invalid, body.light-mode textarea.invalid {
+             border-color: #ef4444;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -281,15 +333,17 @@
                 <a href="#skills" class="text-gray-300 hover:text-teal-400 font-medium nav-link">Skills</a>
                 <a href="#projects" class="text-gray-300 hover:text-teal-400 font-medium nav-link">Projects</a>
                 <a href="#contact" class="text-gray-300 hover:text-teal-400 font-medium nav-link">Contact</a>
-                <button id="theme-toggle" title="Toggle light/dark mode">
-                    <i class="fas fa-sun"></i> <i class="fas fa-moon hidden"></i> </button>
-            </div>
-            <div class="md:hidden flex items-center space-x-4">
-                 <button id="theme-toggle-mobile" title="Toggle light/dark mode" class="text-gray-100 text-xl">
+                <button id="theme-toggle" aria-label="Toggle light/dark mode">
                     <i class="fas fa-sun"></i>
                     <i class="fas fa-moon hidden"></i>
                 </button>
-                <button id="menu-button" class="focus:outline-none text-gray-100">
+            </div>
+            <div class="md:hidden flex items-center space-x-4">
+                 <button id="theme-toggle-mobile" aria-label="Toggle light/dark mode" class="text-gray-100 text-xl">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon hidden"></i>
+                </button>
+                <button id="menu-button" class="focus:outline-none text-gray-100" aria-label="Open mobile menu">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                     </svg>
@@ -297,10 +351,10 @@
             </div>
         </nav>
         <div id="mobile-menu" class="hidden md:hidden shadow-lg">
-            <a href="#about" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">About</a>
-            <a href="#skills" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Skills</a>
-            <a href="#projects" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Projects</a>
-            <a href="#contact" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Contact</a>
+            <a href="#about" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 nav-link-mobile">About</a>
+            <a href="#skills" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 nav-link-mobile">Skills</a>
+            <a href="#projects" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 nav-link-mobile">Projects</a>
+            <a href="#contact" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 nav-link-mobile">Contact</a>
         </div>
     </header>
 
@@ -321,17 +375,17 @@
                     <a href="#contact" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105 btn">Get in Touch</a>
                 </div>
             </div>
-            <div class="mt-12 md:mt-0 md:w-1/2 flex justify-center">
+            <div class="mt-12 md:mt-0 md:w-1/2 flex justify-center fade-in-right">
                 <div class="relative w-64 h-64 md:w-80 md:h-80">
                     <div class="absolute inset-0 bg-gradient-to-br from-teal-400 to-blue-500 rounded-full blur-2xl opacity-50"></div>
                     
-                    <img src="Images/Profile.jpg" alt="Your Photo" class="relative w-full h-full object-cover rounded-full border-4 border-gray-800 shadow-lg">
+                    <img src="Images/Profile.jpg" alt="Profile photo of Hasintha Heshan" class="relative w-full h-full object-cover rounded-full border-4 border-gray-800 shadow-lg">
                 </div>
             </div>
         </section>
 
         <section id="about" class="py-20">
-            <h2 class="section-title">About Me</h2>
+            <h2 class="section-title text-center text-3xl md:text-4xl font-bold mb-16 relative">About Me</h2>
             <div class="max-w-3xl mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
                 <p class="text-gray-300 leading-relaxed">
                     Hello! I'm an Information Systems student at Sabaragamuwa University. My passion lies in creating efficient, user-friendly web applications and diving deep into data to uncover insights. I enjoy turning complex problems into simple, beautiful, and intuitive designs. When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or hiking in the beautiful landscapes of Sri Lanka.
@@ -340,7 +394,7 @@
         </section>
 
         <section id="skills" class="py-20">
-            <h2 class="section-title">My Skills</h2>
+            <h2 class="section-title text-center text-3xl md:text-4xl font-bold mb-16 relative">My Skills</h2>
             <div class="max-w-4xl mx-auto">
                 <div class="mb-8 p-6 bg-gray-800 rounded-lg">
                     <h3 class="text-xl font-bold text-white mb-4 flex items-center">
@@ -444,36 +498,40 @@
         </section>
 
         <section id="projects" class="py-20">
-            <h2 class="section-title">My Projects</h2>
+            <h2 class="section-title text-center text-3xl md:text-4xl font-bold mb-16 relative">My Projects</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <div class="card overflow-hidden">
-                    <img src="Images/Project01.png" alt="Project 1 Screenshot" class="w-full h-48 object-cover">
+                    <img src="Images/Project01.png" alt="Screenshot of the NatureNode website" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-white">Project 01(NatureNode)</h3>
                         <p class="text-gray-300 mb-4">This is an informational website that shows information about environment pollution in my area. It shows the environmental issues and solutions for them.This build using HTML,CSS and javascript.</p>
-                        <a href="https://github.com/HasinthaPerera/nature-node.git" class="text-teal-400 hover:underline">View on GitHub &rarr;</a>
-                        <a href="https://hasinthaperera.github.io/nature-node/" target="_blank" class="text-teal-400 hover:underline"> 
-Live Demo &rarr;
-                        </a>
+                        <div class="mt-4 flex space-x-4">
+                            <a href="https://github.com/HasinthaPerera/nature-node.git" target="_blank" rel="noopener noreferrer" class="text-teal-400 hover:text-teal-300 transition-colors font-medium">View on GitHub &rarr;</a>
+                            <a href="https://hasinthaperera.github.io/nature-node/" target="_blank" rel="noopener noreferrer" class="text-teal-400 hover:text-teal-300 transition-colors font-medium">Live Demo &rarr;</a>
+                        </div>
                     </div>
                 </div>
                 <div class="card overflow-hidden">
-                    <img src="Images/project2.png" alt="Project 2 Screenshot" class="w-full h-48 object-cover">
+                    <img src="Images/project2.png" alt="Screenshot of the RunXcape game" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-white">RunXcape</h3>
                         <p class="text-gray-300 mb-4">It is a game that made using java programming language.
-                            <b>It will be available soon!!</b>
+                            <b class="block mt-2">It will be available soon!!</b>
                         </p>
-                        <a href="https://github.com/HasinthaPerera/RunXcape.git" class="text-teal-400 hover:underline">View on GitHub &rarr;</a>
+                        <div class="mt-4">
+                            <a href="https://github.com/HasinthaPerera/RunXcape.git" target="_blank" rel="noopener noreferrer" class="text-teal-400 hover:text-teal-300 transition-colors font-medium">View on GitHub &rarr;</a>
+                        </div>
                     </div>
                 </div>
                 <div class="card overflow-hidden">
-                    <img src="https://placehold.co/600x400/60a5fa/ffffff?text=Project+3" alt="Project 3 Screenshot" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/2d3748/e2e8f0?text=SnakeGame" alt="Screenshot of the SnakeGame" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-white">SnakeGame</h3>
                         <p class="text-gray-300 mb-4">A snake game built using Java programming languge. Also You can play it by visiting my GitHub account and download it from releases.</p>
-                        <a href="https://github.com/HasinthaPerera/snake_game" class="text-teal-400 hover:underline">View on GitHub &rarr;</a>
-                    
+                        <div class="mt-4">
+                             <a href="https://github.com/HasinthaPerera/snake_game" target="_blank" rel="noopener noreferrer" class="text-teal-400 hover:text-teal-300 transition-colors font-medium">View on GitHub &rarr;</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -520,10 +578,12 @@ Live Demo &rarr;
                         <div class="pt-6">
                             <h4 class="font-semibold mb-4">Follow Me</h4>
                             <div class="flex space-x-4">
-                                <a href="https://github.com/HasinthaPerera" target="_blank" class="bg-gray-700 hover:bg-teal-500 p-3 rounded-full transition-colors">
+                                <a href="https://github.com/HasinthaPerera" target="_blank" rel="noopener noreferrer" class="bg-gray-700 hover:bg-teal-500 p-3 rounded-full transition-colors" aria-label="View my GitHub profile">
+                                    <span class="sr-only">GitHub</span>
                                     <i class="fab fa-github text-xl"></i>
                                 </a>
-                                <a href="https://www.linkedin.com/in/hasintha-heshan-42395037a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B1zdmMMIPQe6nfRp7I7STGQ%3D%3D" target="_blank" class="bg-gray-700 hover:bg-teal-500 p-3 rounded-full transition-colors">
+                                <a href="https://www.linkedin.com/in/hasintha-heshan-42395037a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B1zdmMMIPQe6nfRp7I7STGQ%3D%3D" target="_blank" rel="noopener noreferrer" class="bg-gray-700 hover:bg-teal-500 p-3 rounded-full transition-colors" aria-label="View my LinkedIn profile">
+                                    <span class="sr-only">LinkedIn</span>
                                     <i class="fab fa-linkedin text-xl"></i>
                                 </a>
                             </div>
@@ -537,30 +597,29 @@ Live Demo &rarr;
                                 <div>
                                     <label for="name" class="block text-sm font-semibold mb-2">Name *</label>
                                     <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:border-teal-400 focus:outline-none transition-colors text-white">
-                                    <span class="error-message text-red-400 text-sm hidden">Please enter your name</span>
+                                    <span id="name-error" class="error-message text-red-400 text-sm mt-1">Please enter your name</span>
                                 </div>
                                 <div>
                                     <label for="email" class="block text-sm font-semibold mb-2">Email *</label>
                                     <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:border-teal-400 focus:outline-none transition-colors text-white">
-                                    <span class="error-message text-red-400 text-sm hidden">Please enter a valid email</span>
+                                    <span id="email-error" class="error-message text-red-400 text-sm mt-1">Please enter a valid email</span>
                                 </div>
                             </div>
                             <div>
                                 <label for="subject" class="block text-sm font-semibold mb-2">Subject *</label>
                                 <input type="text" id="subject" name="title" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:border-teal-400 focus:outline-none transition-colors text-white">
-                                <span class="error-message text-red-400 text-sm hidden">Please enter a subject</span>
+                                <span id="subject-error" class="error-message text-red-400 text-sm mt-1">Please enter a subject</span>
                             </div>
                             <div>
                                 <label for="message" class="block text-sm font-semibold mb-2">Message *</label>
                                 <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:border-teal-400 focus:outline-none transition-colors text-white resize-none"></textarea>
-                                <span class="error-message text-red-400 text-sm hidden">Please enter your message</span>
+                                <span id="message-error" class="error-message text-red-400 text-sm mt-1">Please enter your message</span>
                             </div>
                             <button type="submit" class="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-105 btn">
                                 <i class="fas fa-paper-plane mr-2"></i>Send Message
                             </button>
-                            <div id="form-message" class="text-center hidden">
-                                <p class="text-teal-400 font-semibold">Thank you! Your message has been sent successfully.</p>
-                            </div>
+                            <div id="form-message" class="text-center">
+                                </div>
                         </form>
                     </div>
                 </div>
@@ -572,6 +631,10 @@ Live Demo &rarr;
     <footer class="text-center py-4">
         <p class="text-gray-400 text-sm">&copy; <span id="footer-year"></span> Hasintha Heshan. All Rights Reserved.</p>
     </footer>
+
+    <button id="back-to-top" class="hidden" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -637,8 +700,9 @@ Live Demo &rarr;
                         setTimeout(type, speed);
                     } else {
                         setTimeout(() => {
-                            element.style.borderRight = 'none';
-                        }, 2000);
+                            // Keep cursor blinking
+                            element.style.animation = 'blink 0.75s step-end infinite';
+                        }, 1000);
                     }
                 }
                 type();
@@ -696,6 +760,7 @@ Live Demo &rarr;
                         if (entry.isIntersecting) {
                             entry.target.style.opacity = '1';
                             entry.target.style.transform = 'translateY(0) translateX(0)';
+                            observer.unobserve(entry.target); 
                         }
                     });
                 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
@@ -703,6 +768,10 @@ Live Demo &rarr;
                 animateElements.forEach(el => {
                     el.style.opacity = '0';
                     el.style.transition = 'all 0.6s ease-out';
+                     if (el.classList.contains('fade-in-up')) el.style.transform = 'translateY(30px)';
+                    if (el.classList.contains('fade-in-left')) el.style.transform = 'translateX(-30px)';
+                    if (el.classList.contains('fade-in-right')) el.style.transform = 'translateX(30px)';
+                    if (el.classList.contains('card') || el.classList.contains('section-title')) el.style.transform = 'translateY(20px)';
                     observer.observe(el);
                 });
             }
@@ -739,6 +808,48 @@ Live Demo &rarr;
                     });
                 }
             }
+            
+            // --- NEW: Back to Top Button Logic ---
+            function initBackToTop() {
+                const backToTopBtn = document.getElementById('back-to-top');
+                if (!backToTopBtn) return;
+                
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        backToTopBtn.classList.remove('hidden');
+                    } else {
+                        backToTopBtn.classList.add('hidden');
+                    }
+                });
+                
+                backToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // --- NEW: Active Nav Link Highlighting ---
+            function initActiveNavHighlight() {
+                const sections = document.querySelectorAll('section[id]');
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                if (!sections.length || !navLinks.length) return;
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.getAttribute('id');
+                            navLinks.forEach(link => {
+                                link.classList.remove('active');
+                                if (link.getAttribute('href') === `#${id}`) {
+                                    link.classList.add('active');
+                                }
+                            });
+                        }
+                    });
+                }, { rootMargin: '-30% 0px -70% 0px' }); 
+
+                sections.forEach(section => observer.observe(section));
+            }
 
             // Initialize all functions
             createParticles();
@@ -746,6 +857,8 @@ Live Demo &rarr;
             initScrollAnimations();
             initSmoothScroll();
             addLoadingAnimation();
+            initBackToTop(); 
+            initActiveNavHighlight();
 
             // EmailJS Configuration
             const EMAILJS_CONFIG = {
@@ -755,9 +868,9 @@ Live Demo &rarr;
             };
 
             const isEmailJSConfigured = () => {
-                return EMAILJS_CONFIG.serviceID !== 'YOUR_SERVICE_ID' &&
-                       EMAILJS_CONFIG.templateID !== 'YOUR_TEMPLATE_ID' &&
-                       EMAILJS_CONFIG.publicKey !== 'YOUR_PUBLIC_KEY';
+                return EMAILJS_CONFIG.serviceID !== 'service_c14ex88' &&
+                       EMAILJS_CONFIG.templateID !== 'template_4ilwcir' &&
+                       EMAILJS_CONFIG.publicKey !== 'tJyzNke0fsVsl0czT';
             };
 
             // Contact Form Validation and Handling
@@ -770,13 +883,13 @@ Live Demo &rarr;
                     try {
                         emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
                     } catch (error) {
-                        console.log('EmailJS initialization failed:', error);
+                        console.error('EmailJS initialization failed:', error);
                     }
                 }
 
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    if (!validateForm()) return;
+                    if (!validateForm()) return; 
                     
                     const submitButton = form.querySelector('button[type="submit"]');
                     const originalText = submitButton.innerHTML;
@@ -804,6 +917,12 @@ Live Demo &rarr;
                         }, 1500);
                     }
                 });
+                
+                
+                form.querySelectorAll('input[required], textarea[required]').forEach(field => {
+                    field.addEventListener('input', () => validateField(field));
+                    field.addEventListener('blur', () => validateField(field));
+                });
 
                 function validateForm() {
                     let isValid = true;
@@ -815,14 +934,34 @@ Live Demo &rarr;
                 }
 
                 function validateField(field) {
-                    // ... (validation logic remains the same)
-                    return true; // Simplified for brevity
+                    const value = field.value.trim();
+                    const errorSpan = document.getElementById(`${field.id}-error`);
+                    let isValid = true;
+                    
+                    if (value === '') {
+                        isValid = false;
+                    } else if (field.type === 'email') {
+                      
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(value)) {
+                            isValid = false;
+                        }
+                    }
+
+                    if (!isValid) {
+                        field.classList.add('invalid');
+                        if (errorSpan) errorSpan.style.display = 'block';
+                        return false;
+                    } else {
+                        field.classList.remove('invalid');
+                        if (errorSpan) errorSpan.style.display = 'none';
+                        return true;
+                    }
                 }
 
                 function showFormMessage(message, type) {
                     formMessage.innerHTML = `<p class="font-semibold ${type === 'success' ? 'text-teal-400' : type === 'error' ? 'text-red-400' : 'text-yellow-400'}">${message}</p>`;
-                    formMessage.classList.remove('hidden');
-                    setTimeout(() => formMessage.classList.add('hidden'), 6000);
+                    setTimeout(() => { formMessage.innerHTML = ''; }, 6000);
                 }
             }
 
