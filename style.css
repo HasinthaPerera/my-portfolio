@@ -1,0 +1,312 @@
+:root {
+    /* Light Mode Colors */
+    --bg-color-light: #c3c5bd; 
+    --text-color-light: #3cd1f6; 
+    --card-bg-light: #85d0f6;
+    --header-bg-light: rgba(115, 219, 237, 0.8);
+    --section-bg-light: #6dccf8; 
+    --primary-color: #44eeda; 
+    --primary-color-hover: #0d9488;
+    --secondary-text-light: #67d7e9;
+
+    /* Dark Mode Colors (default) */
+    --bg-color-dark: #1a202c;
+    --text-color-dark: #e2e8f0;
+    --card-bg-dark: #2d3748;
+    --header-bg-dark: rgba(26, 32, 44, 0.8);
+    --section-bg-dark: #111827;
+    --secondary-text-dark: #9ca3af;
+}
+
+/* Applying the theme */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+    overflow-x: hidden;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.light-mode {
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+}
+
+* {
+    scroll-behavior: smooth;
+}
+
+header {
+    background-color: var(--header-bg-dark);
+}
+body.light-mode header {
+    background-color: var(--header-bg-light);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Update other elements to use CSS variables */
+#mobile-menu {
+    background-color: var(--bg-color-dark);
+}
+body.light-mode #mobile-menu {
+    background-color: #fff;
+}
+body.light-mode .text-gray-100 { color: #1f2937; }
+body.light-mode .text-gray-300 { color: #4b5563; }
+body.light-mode .hover\:text-teal-400:hover { color: #14b8a6; }
+body.light-mode .bg-gray-700 { background-color: #e5e7eb; }
+body.light-mode .hover\:bg-gray-600:hover { background-color: #d1d5db; }
+body.light-mode .border-gray-800 { border-color: #e5e7eb; }
+
+.section-title {
+    color: var(--text-color-dark);
+}
+body.light-mode .section-title {
+    color: var(--text-color-light);
+}
+
+.card {
+    background-color: var(--card-bg-dark);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+body.light-mode .card {
+    background-color: var(--card-bg-light);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+#skills {
+    background-color: var(--section-bg-dark);
+}
+body.light-mode #skills {
+    background-color: var(--section-bg-light);
+}
+
+#about .bg-gray-800, #skills .bg-gray-800 {
+    background-color: var(--card-bg-dark);
+}
+body.light-mode #about .bg-gray-800, body.light-mode #skills .bg-gray-800 {
+    background-color: var(--card-bg-light);
+}
+
+#contact {
+    background-color: var(--card-bg-dark);
+}
+body.light-mode #contact {
+    background-color: var(--section-bg-light);
+}
+
+body.light-mode #contact .text-white { color: var(--text-color-light); }
+body.light-mode #contact .text-gray-300 { color: var(--secondary-text-light); }
+body.light-mode #contact .bg-gray-700 { background-color: #d1d5db; }
+body.light-mode #contact .hover\:bg-gray-600:hover { background-color: #bec4ca; }
+body.light-mode #contact input, body.light-mode #contact textarea {
+    background-color: #e5e7eb;
+    color: var(--text-color-light);
+    border-color: #d1d5db;
+}
+
+footer {
+    background-color: var(--section-bg-dark);
+}
+body.light-mode footer {
+    background-color: #d1d5db;
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+@keyframes blink {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--primary-color); }
+}
+
+.fade-in-up { animation: fadeInUp 0.8s ease-out; }
+.fade-in-left { animation: fadeInLeft 0.8s ease-out; }
+.fade-in-right { animation: fadeInRight 0.8s ease-out; }
+
+.typing-text {
+    display: inline-block;
+    border-right: 3px solid var(--primary-color);
+    animation: blink 0.75s step-end infinite;
+}
+
+
+.particles {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    overflow: hidden; z-index: -1;
+}
+.particle {
+    position: absolute;
+    background: var(--primary-color);
+    border-radius: 50%; opacity: 0.3;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+    50% { transform: translateY(-20px) rotate(180deg); opacity: 0.6; }
+}
+
+.section-title::after {
+    content: ''; position: absolute; bottom: -10px;
+    left: 50%; transform: translateX(-50%);
+    width: 60px; height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), #06d6a0);
+    border-radius: 2px;
+}
+
+.card::before {
+    content: ''; position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.1), transparent);
+    transition: left 0.5s;
+}
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(20, 184, 166, 0.2);
+}
+.card:hover::before { left: 100%; }
+
+.nav-link { transition: all 0.3s ease; position: relative; }
+.nav-link::after {
+    content: ''; position: absolute; bottom: -5px; left: 0;
+    width: 0; height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+.nav-link:hover { color: var(--primary-color); }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.nav-link.active { color: var(--primary-color); }
+
+.btn {
+    transition: all 0.3s ease; position: relative;
+    overflow: hidden; z-index: 1;
+}
+.btn::before {
+    content: ''; position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s; z-index: -1;
+}
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+.btn:hover::before { left: 100%; }
+
+.skill-bar {
+    background: #1a202c; border-radius: 10px; padding: 3px;
+    margin: 10px 0; position: relative; overflow: hidden;
+}
+body.light-mode .skill-bar {
+    background-color: #d1d5db;
+}
+.skill-progress {
+    height: 20px; border-radius: 8px;
+    background: linear-gradient(90deg, var(--primary-color), #06d6a0);
+    display: flex; align-items: center; padding: 0 10px;
+    color: white; font-size: 12px; font-weight: 600;
+    transition: width 2s ease-in-out; position: relative;
+}
+.skill-progress::after {
+    content: ''; position: absolute; top: 0; left: 0;
+    height: 100%; width: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+
+#theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color-dark);
+    font-size: 1.25rem;
+    transition: color 0.3s, transform 0.3s;
+}
+body.light-mode #theme-toggle {
+    color: var(--text-color-light);
+}
+#theme-toggle:hover {
+    color: var(--primary-color);
+    transform: scale(1.1) rotate(15deg);
+}
+
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 1000;
+}
+#back-to-top:hover {
+    background-color: var(--primary-color-hover);
+    transform: scale(1.1);
+}
+#back-to-top.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+
+
+.error-message {
+    display: none; 
+}
+input.invalid, textarea.invalid {
+    border-color: #f87171; 
+}
+body.light-mode input.invalid, body.light-mode textarea.invalid {
+     border-color: #ef4444;
+}
