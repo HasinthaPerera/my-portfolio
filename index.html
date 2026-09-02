@@ -246,90 +246,126 @@
 
         <section id="contact" class="py-20 text-white">
             <div class="container mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center">Let's Connect</h2>
-                <p class="text-lg text-gray-300 mb-12 text-center">I'm currently looking for new opportunities. My inbox is always open!</p>
-                
-                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="space-y-6">
-                        <h3 class="text-2xl font-bold mb-6">Get in Touch</h3>
-                        
-                        <div class="flex items-center space-x-4 p-4 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors">
-                            <div class="bg-teal-500 p-3 rounded-full">
-                                <i class="fas fa-envelope text-white"></i>
+
+                <!-- Section Header -->
+                <h2 class="section-title text-center text-3xl md:text-4xl font-bold mb-4 relative">Let's Connect</h2>
+                <p class="text-lg text-gray-300 mb-4 text-center">I'm currently looking for new opportunities. My inbox is always open!</p>
+
+                <!-- Availability Badge -->
+                <div class="flex justify-center mb-12">
+                    <span class="contact-badge">
+                        <span class="badge-dot"></span>
+                        Open to Work &amp; Collaborations
+                    </span>
+                </div>
+
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
+
+                    <!-- LEFT: Contact Info -->
+                    <div class="space-y-5">
+                        <h3 class="text-2xl font-bold mb-6 text-white">Get in Touch</h3>
+
+                        <!-- Email -->
+                        <a href="mailto:hasinthaheshan15@gmail.com" class="contact-info-card group">
+                            <div class="contact-icon-wrap" style="background: linear-gradient(135deg, #14b8a6, #06b6d4);">
+                                <i class="fas fa-envelope"></i>
                             </div>
-                            <div>
-                                <h4 class="font-semibold">Email</h4>
-                                <a href="mailto:hasinthaheshan15@gmail.com" class="text-gray-300 hover:text-teal-400">hasinthaheshan15@gmail.com</a>
+                            <div class="flex-1 min-w-0">
+                                <p class="contact-card-label">Email</p>
+                                <p class="contact-card-value">hasinthaheshan15@gmail.com</p>
+                            </div>
+                            <i class="fas fa-arrow-right contact-arrow"></i>
+                        </a>
+
+                        <!-- Phone -->
+                        <a href="tel:+94713158065" class="contact-info-card group">
+                            <div class="contact-icon-wrap" style="background: linear-gradient(135deg, #8b5cf6, #6366f1);">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="contact-card-label">Phone</p>
+                                <p class="contact-card-value">+94 71 315 8065</p>
+                            </div>
+                            <i class="fas fa-arrow-right contact-arrow"></i>
+                        </a>
+
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/94713158065" target="_blank" rel="noopener noreferrer" class="contact-info-card group">
+                            <div class="contact-icon-wrap" style="background: linear-gradient(135deg, #22c55e, #16a34a);">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="contact-card-label">WhatsApp</p>
+                                <p class="contact-card-value">Chat instantly with me</p>
+                            </div>
+                            <i class="fas fa-arrow-right contact-arrow"></i>
+                        </a>
+
+                        <!-- Location -->
+                        <div class="contact-info-card">
+                            <div class="contact-icon-wrap" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="contact-card-label">Location</p>
+                                <p class="contact-card-value">Badulla, Uva Province, Sri Lanka 🇱🇰</p>
                             </div>
                         </div>
-                        
-                        <div class="flex items-center space-x-4 p-4 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors">
-                            <div class="bg-teal-500 p-3 rounded-full">
-                                <i class="fas fa-phone text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold">Phone</h4>
-                                <a href="tel:+94713158065" class="text-gray-300 hover:text-teal-400">+94 71 315 8065</a>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center space-x-4 p-4 bg-gray-700 rounded-lg">
-                            <div class="bg-teal-500 p-3 rounded-full">
-                                <i class="fas fa-map-marker-alt text-white"></i>
-                           </div>
-                            <div>
-                                <h4 class="font-semibold">Location</h4>
-                                <p class="text-gray-300">Uva Province,Badulla, Sri Lanka</p>
-                            </div>
-                        </div>
-                        
-                        <div class="pt-6">
-                            <h4 class="font-semibold mb-4">Follow Me</h4>
-                            <div class="flex space-x-4">
-                                <a href="https://github.com/HasinthaPerera" target="_blank" rel="noopener noreferrer" class="bg-gray-700 hover:bg-teal-500 p-3 rounded-full transition-colors" aria-label="View my GitHub profile">
-                                    <span class="sr-only">GitHub</span>
-                                    <i class="fab fa-github text-xl"></i>
+
+                        <!-- Social Links -->
+                        <div class="pt-4">
+                            <h4 class="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-4">Find Me On</h4>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="https://github.com/HasinthaPerera" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="GitHub">
+                                    <i class="fab fa-github"></i>
+                                    <span>GitHub</span>
                                 </a>
-                                <a href="https://www.linkedin.com/in/hasintha-heshan-42395037a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B1zdmMMIPQe6nfRp7I7STGQ%3D%3D" target="_blank" rel="noopener noreferrer" class="bg-gray-700 hover:bg-teal-500 p-3 rounded-full transition-colors" aria-label="View my LinkedIn profile">
-                                    <span class="sr-only">LinkedIn</span>
-                                    <i class="fab fa-linkedin text-xl"></i>
+                                <a href="https://www.linkedin.com/in/hasintha-heshan-42395037a" target="_blank" rel="noopener noreferrer" class="social-pill social-pill--linkedin" aria-label="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                    <span>LinkedIn</span>
+                                </a>
+                                <a href="https://wa.me/94713158065" target="_blank" rel="noopener noreferrer" class="social-pill social-pill--whatsapp" aria-label="WhatsApp">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <span>WhatsApp</span>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    
-                    <div>
-                        <h3 class="text-2xl font-bold mb-6">Send Message</h3>
-                        <form id="contact-form" class="space-y-6">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <label for="name" class="block text-sm font-semibold mb-2">Name *</label>
-                                    <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:border-teal-400 focus:outline-none transition-colors text-white">
-                                    <span id="name-error" class="error-message text-red-400 text-sm mt-1">Please enter your name</span>
+
+                    <!-- RIGHT: Contact Form -->
+                    <div class="contact-form-wrap">
+                        <h3 class="text-2xl font-bold mb-6 text-white">Send a Message</h3>
+                        <form id="contact-form" class="space-y-5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">Your Name *</label>
+                                    <input type="text" id="name" name="name" required placeholder="Hasintha" class="form-input">
+                                    <span id="name-error" class="error-message text-red-400 text-xs mt-1">Please enter your name</span>
                                 </div>
-                                <div>
-                                    <label for="email" class="block text-sm font-semibold mb-2">Email *</label>
-                                    <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:border-teal-400 focus:outline-none transition-colors text-white">
-                                    <span id="email-error" class="error-message text-red-400 text-sm mt-1">Please enter a valid email</span>
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input type="email" id="email" name="email" required placeholder="you@example.com" class="form-input">
+                                    <span id="email-error" class="error-message text-red-400 text-xs mt-1">Please enter a valid email</span>
                                 </div>
                             </div>
-                            <div>
-                                <label for="subject" class="block text-sm font-semibold mb-2">Subject *</label>
-                                <input type="text" id="subject" name="title" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:border-teal-400 focus:outline-none transition-colors text-white">
-                                <span id="subject-error" class="error-message text-red-400 text-sm mt-1">Please enter a subject</span>
+                            <div class="form-group">
+                                <label for="subject" class="form-label">Subject *</label>
+                                <input type="text" id="subject" name="title" required placeholder="Project inquiry / Collaboration" class="form-input">
+                                <span id="subject-error" class="error-message text-red-400 text-xs mt-1">Please enter a subject</span>
                             </div>
-                            <div>
-                                <label for="message" class="block text-sm font-semibold mb-2">Message *</label>
-                                <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:border-teal-400 focus:outline-none transition-colors text-white resize-none"></textarea>
-                                <span id="message-error" class="error-message text-red-400 text-sm mt-1">Please enter your message</span>
+                            <div class="form-group">
+                                <label for="message" class="form-label">Message *</label>
+                                <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project or idea..." class="form-input resize-none"></textarea>
+                                <span id="message-error" class="error-message text-red-400 text-xs mt-1">Please enter your message</span>
                             </div>
-                            <button type="submit" class="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-105 btn">
-                                <i class="fas fa-paper-plane mr-2"></i>Send Message
+                            <button type="submit" id="submit-btn" class="contact-submit-btn btn">
+                                <i class="fas fa-paper-plane mr-2"></i>
+                                <span>Send Message</span>
                             </button>
-                            <div id="form-message" class="text-center">
-                                </div>
+                            <div id="form-message" class="text-center"></div>
                         </form>
                     </div>
+
                 </div>
             </div>
         </section>
